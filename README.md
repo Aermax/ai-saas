@@ -1,8 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+![Logo](https://res.cloudinary.com/dxpkn1nc0/image/upload/v1690533423/logoipsum-280_spkpcl.svg)
 
-First, run the development server:
+
+# Creata.Ai
+
+The Ultimate AI tool that can consist of LLM to Image Generation
+
+
+![Screen_recording-2023-07-28_14-01-06_AdobeExpress](https://github.com/Aermax/ai-saas/assets/95025070/2c9d981f-d825-4f42-b076-2d9c063d2a1d)
+
+
+
+## Authors
+
+- [@aermax](https://www.github.com/aermax)
+
+
+## Features
+
+ - [Conversation Model](https://creata-ai.vercel.app/conversation)
+ - [Image Generation](https://creata-ai.vercel.app/image)
+ - [Code Generation](https://creata-ai.vercel.app/code)
+ - [Video Generation](https://creata-ai.vercel.app/video)
+ - [Music Generation](https://creata-ai.vercel.app/music)  
+
+## Development Server
+
+To run locally
 
 ```bash
 npm run dev
@@ -10,25 +34,5 @@ npm run dev
 yarn dev
 # or
 pnpm dev
+
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
