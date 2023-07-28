@@ -4,12 +4,11 @@
 
 # Creata.Ai
 
+- [DEMO](https://creata-ai.vercel.app/conversation)
+
 The Ultimate AI tool that can consist of LLM to Image Generation
 
-
-![Screen_recording-2023-07-28_14-01-06_AdobeExpress](https://github.com/Aermax/ai-saas/assets/95025070/2c9d981f-d825-4f42-b076-2d9c063d2a1d)
-
-
+https://github.com/Aermax/ai-saas/assets/95025070/1dab7a2c-bbdd-4350-90ba-e02f4182ba5b
 
 ## Authors
 
