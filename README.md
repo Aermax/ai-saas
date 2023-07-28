@@ -4,7 +4,7 @@
 
 # Creata.Ai
 
-- [DEMO](https://creata-ai.vercel.app/conversation)
+- [DEMO](https://creata-ai.vercel.app/)
 
 The Ultimate AI tool that can consist of LLM to Image Generation
 
