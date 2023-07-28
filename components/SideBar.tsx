@@ -40,6 +40,13 @@ const routes = [
         logo: MessageSquare,
         color: "text-violet-500"
     },
+    
+    {
+        title:"Code Generation",
+        href:"/code",
+        logo: Code,
+        color: "text-red-500"
+    },
     {
         title:"Image Generation",
         href:"/image",
@@ -59,12 +66,7 @@ const routes = [
         logo: Music,
         color: "text-blue-300"
     },
-    {
-        title:"Code Generation",
-        href:"/code",
-        logo: Code,
-        color: "text-red-500"
-    },
+    
     {
         title:"Settings",
         href:"/settings",

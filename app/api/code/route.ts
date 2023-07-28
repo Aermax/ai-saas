@@ -1,52 +1,65 @@
-import Replicate from "replicate";
-import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs";
-import { checkApiLimit, incrementApiLimit } from "@/lib/api-limit";
+import { NextResponse } from "next/server";
+import { ChatCompletionRequestMessage, Configuration, OpenAIApi } from "openai";
 
-const replicate = new Replicate({
-  auth: "r8_Kkt7YAQ9YvqDsUvt192Q9PhmcAil6IK11lksL",
-})
+import { checkSubscription } from "@/lib/subscription";
+import { incrementApiLimit, checkApiLimit } from "@/lib/api-limit";
+
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+const openai = new OpenAIApi(configuration);
+
+const instructionMessage: ChatCompletionRequestMessage = {
+  role: "system",
+  content: "You are a code generator. You must answer only in markdown code snippets. Use code comments for explanations."
+};
 
 export async function POST(
-    req:Request
+  req: Request
 ) {
-    try {
-        const { userId } = auth()
-        const body = await req.json()
-        const { messages }= body
+  try {
+    const { userId } = auth();
+    const body = await req.json();
+    const { messages  } = body;
 
-        if(!userId){
-            return new NextResponse("Unauthorized", {status: 500})
-        }
-
-        if(!messages){
-            return new NextResponse("Messages Required", {status: 400})
-        }
-
-        const freeTrial = await checkApiLimit()
-
-        if(!freeTrial) {
-            return new NextResponse("Free trial has ended!", 
-            {status: 403})
-        }
-
-        // const response = await replicate.run(
-        //     "a16z-infra/llama13b-v2-chat:6b4da803a2382c08868c5af10a523892f38e2de1aafb2ee55b020d9efef2fdb8",
-        //     {
-        //       input: {
-        //         prompt: 'You are a Code generation assistant.You generates code in markdown only thus just explain code and no extra talking.'+ messages
-        //       }
-        //     }
-        //   )
-
-        await incrementApiLimit()
-
-        // return NextResponse.json(response)
-        return NextResponse.json([' Sure,', " I'd", ' be', ' happy', ' to', ' help!', " Here's", ' an', ' example', ' of', ' how', ' you', ' could', ' create', ' a', ' navbar', ' in', ' React', ' using', ' Markdown', ' code:\n###', ' Navbar\n\nThe', ' navbar', ' component', ' is', ' a', ' fundamental', ' component', ' in', ' many', ' web', ' applications,', ' and', " it's", ' easy', ' to', ' create', ' one', ' in', ' React', ' using', ' the', ' `nav`', ' element.', " Here's", ' an', ' example', ' of', ' how', ' you', ' could', ' create', ' a', ' basic', ' navbar', ' in', ' React:\n```\n<nav>\n', ' ', ' <ul>\n', '   ', ' <li><a', ' href="#home">Home</a></li>\n', '   ', ' <li><a', ' href="#about">About</a></li>\n', '   ', ' <li><a', ' href="#contact">Contact</a></li>\n', ' ', ' </ul>\n</nav>\n```\n\nThis', ' code', ' creates', ' a', ' basic', ' navbar', ' with', ' three', ' links:', ' one', ' to', ' the', ' "Home"', ' page,', ' one', ' to', ' the', ' "About"', ' page,', ' and', ' one', ' to', ' the', ' "Contact"', ' page.', ' The', ' `nav`', ' element', ' is', ' a', ' block-level'])
-    } catch (error) {
-        console.log("[CODE_ERROR]", error)
-        return new NextResponse("Internal server error", {status : 500})
+    if (!userId) {
+      return new NextResponse("Unauthorized", { status: 401 });
     }
 
-}
+    if (!configuration.apiKey) {
+      return new NextResponse("OpenAI API Key not configured.", { status: 500 });
+    }
 
+    if (!messages) {
+      return new NextResponse("Messages are required", { status: 400 });
+    }
+
+    const freeTrial = await checkApiLimit();
+    const isPro = await checkSubscription();
+
+    if (!freeTrial && !isPro) {
+      return new NextResponse("Free trial has expired. Please upgrade to pro.", { status: 403 });
+    }
+
+    const response = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [instructionMessage, ...messages],
+      temperature: 1,
+      max_tokens: 150,
+      top_p: 1,
+      frequency_penalty: 0,
+      presence_penalty: 0,
+    });
+
+    if (!isPro) {
+      await incrementApiLimit();
+    }
+
+    return NextResponse.json(response.data.choices[0].message);
+  } catch (error) {
+    console.log('[CODE_ERROR]', error);
+    return new NextResponse("Internal Error", { status: 500 });
+  }
+};

@@ -5,36 +5,33 @@ import { BotAvatar } from './bot-avatar'
 import ReactMarkdown from 'react-markdown'
 
 interface ChatProps {
-    query: string
+    role: string
     content: string
     
 }
 
-const CodeComponent = ({query, content} : ChatProps) => {
+const CodeComponent = ({role, content} : ChatProps) => {
   return (
-    <div>
-        <div className='flex m-4 gap-4 pl-4 p-4 mr-4 items-center rounded-md bg-muted'>
-            <BotAvatar />
-            <ReactMarkdown components={{
-                pre: ({ node, ...props }) => (
-                <div className="overflow-auto w-full my-2 bg-black/10 p-2 rounded-lg">
-                    <pre {...props} />
-                </div>
-                ),
-                code: ({ node, ...props }) => (
-                <code className="bg-black/10 rounded-lg p-1" {...props} />
-                )
-            }} className="text-sm overflow-hidden leading-7">
-                {content || ""}
-            </ReactMarkdown>
+    <div 
+    className={cn(
+      "p-8  flex items-start gap-x-8 rounded-lg mt-4 md:m-4 m-4 overflow-hidden",
+      role === "user" ? "bg-white dark:bg-muted-foreground border border-black/10" : "bg-muted",
+    )}
+  >
+    {role === "user" ? <UserAvatar /> : <BotAvatar />}
+    <ReactMarkdown components={{
+      pre: ({ node, ...props }) => (
+        <div className="overflow-auto w-full my-2 bg-black/10 p-2 rounded-lg">
+          <pre {...props} />
         </div>
-        
-        <div className='flex m-4 gap-4 pl-4 p-4 mr-4 items-center rounded-md bg-white border'>
-            <UserAvatar />
-            <p >{query}</p>
-        </div>
-
-    </div>
+      ),
+      code: ({ node, ...props }) => (
+        <code className="bg-black/10 rounded-lg p-1" {...props} />
+      )
+    }} className="text-sm overflow-hidden leading-7">
+      {content || ""}
+    </ReactMarkdown>
+  </div>
   )
 }
 

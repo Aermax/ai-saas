@@ -22,6 +22,8 @@ import { cn } from '@/lib/utils'
 import Chat from '@/components/Chat'
 import Image from 'next/image'
 import { useProModal } from '@/hooks/use-pro-modal'
+import ChatNew from '@/components/chat-new'
+import { Badge } from '@/components/ui/badge'
 
 type Message = {
   query: string
@@ -48,7 +50,7 @@ const ConversationPage = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) =>{
     try {
-      const response = await axios.post('/api/conversation/', {
+      const response = await axios.post('/api/video/', {
         "messages": values.prompt
       })
       console.log(response.data)
@@ -79,6 +81,7 @@ const ConversationPage = () => {
         bg="bg-green-300/10"
         
       />
+      <Badge variant="destructive" className='ml-8'>Coming Soon</Badge>
       <div className="px-4 lg:px-8 mt-8">
         <div>
           <Form {...form}>
@@ -137,7 +140,7 @@ const ConversationPage = () => {
       </div>
       <div>
       {
-        isLoading && <div className="mt-2 mx-0 md:mx-8 p-9 gap-2 flex items-center justify-center 
+        isLoading && <div className="mt-2 ml-4 md:mx-8 p-9 gap-2 flex items-center justify-center 
         pl-4  mr-4 rounded-md bg-muted
         ">
           <Loader className="animate-spin"/>
@@ -148,7 +151,7 @@ const ConversationPage = () => {
       <div className='mx-0 md:mx-4 h-full pb-2'>
         {messages?.map((message,index)=>{
           return (
-            <Chat
+            <ChatNew
               key={index}
               query= {message.query}
               content={message.content}

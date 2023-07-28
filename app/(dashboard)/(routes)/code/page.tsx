@@ -22,6 +22,7 @@ import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import CodeComponent from '@/components/code-component'
 import { useProModal } from '@/hooks/use-pro-modal'
+import { ChatCompletionRequestMessage } from 'openai'
 
 type Message = {
   query: string
@@ -35,7 +36,7 @@ const CodePage = () => {
 
   const [isMounted, setIsMounted] = useState(false)
   const router = useRouter()
-  const [messages, setMessages] = useState<Array<Message>>([])
+  const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([])
   const proModal = useProModal()
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -49,16 +50,11 @@ const CodePage = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) =>{
     try {
-      const response = await axios.post('/api/code/', {
-        "messages": values.prompt
-      })
-      console.log(response.data)
-      const chatBlock = {
-        query: values.prompt,
-        content: arrayToSentence(response.data)
-      }
+      const userMessage: ChatCompletionRequestMessage = { role: "user", content: values.prompt };
+      const newMessages = [userMessage];
       
-      setMessages((prevValues)=> [chatBlock, ...prevValues])
+      const response = await axios.post('/api/code', { messages: newMessages });
+      setMessages((current) => [response.data, userMessage, ...current  ]);
       form.reset()
     } catch (error: any) {
       if(error?.response?.status === 403){
@@ -146,7 +142,7 @@ const CodePage = () => {
       </div>
       <div>
       {
-        isLoading && <div className="mt-2 mx-0 md:mx-8 p-9 gap-2 flex items-center justify-center 
+        isLoading && <div className="mt-2 ml-4 md:mx-8 p-9 gap-2 flex items-center justify-center 
         pl-4  mr-4 rounded-md bg-muted
         ">
           <Loader className="animate-spin"/>
@@ -159,8 +155,8 @@ const CodePage = () => {
           return (
             <CodeComponent
               key={index}
-              query= {message.query}
-              content={message.content}
+              role= {message.role}
+              content={message.content!}
             />
           )
         })}

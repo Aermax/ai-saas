@@ -5,26 +5,26 @@ import { BotAvatar } from './bot-avatar'
 
 
 interface ChatProps {
-    role: string
+    query: string
     content: string
     
 }
 
-const Chat = ({role, content} : ChatProps) => {
+const ChatNew = ({query, content} : ChatProps) => {
   return (
     <div>
-        {role !=="user" ? <div className='flex m-4 gap-4 pl-4 p-4 mr-4 items-center rounded-md bg-muted'>
+        <div className='flex m-4 gap-4 pl-4 p-4 mr-4 items-center rounded-md bg-muted'>
             <BotAvatar />
             <p >{content}</p>
         </div>
-        :
+        
         <div className='flex m-4 gap-4 pl-4 p-4 mr-4 items-center rounded-md bg-white dark:bg-muted-foreground border'>
             <UserAvatar />
-            <p >{content}</p>
-        </div>}
+            <p >{query}</p>
+        </div>
 
     </div>
   )
 }
 
-export default Chat
+export default ChatNew

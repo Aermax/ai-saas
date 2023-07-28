@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 import { formSchema } from './constants'
 import { zodResolver } from "@hookform/resolvers/zod"
+import { ChatCompletionRequestMessage } from "openai"
 
 import { 
   Form, 
@@ -34,7 +35,7 @@ const arrayToSentence = (arr: Array<string>): string => arr.join(" ")
 const ConversationPage = () => {
 
   const router = useRouter()
-  const [messages, setMessages] = useState<Array<Message>>([])
+  const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([])
   const proModal = useProModal()
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -48,16 +49,17 @@ const ConversationPage = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) =>{
     try {
-      const response = await axios.post('/api/conversation/', {
-        "messages": values.prompt
-      })
-      console.log(response.data)
-      const chatBlock = {
-        query: values.prompt,
-        content: arrayToSentence(response.data)
-      }
+
+      const userMessage: ChatCompletionRequestMessage = { role: "user", content: values.prompt };
+      const newMessages = [...messages, userMessage];
       
-      setMessages((prevValues)=> [chatBlock, ...prevValues])
+      const response = await axios.post('/api/conversation', { messages: newMessages });
+      setMessages((current) => [response.data, userMessage, ...current]);
+      
+     //const response = await axios.post('/api/conversation', { messages: values.prompt });
+      //setMessages((current) => [...current, userMessage, response.data]);
+      //console.log(response.data)
+      
       form.reset()
     } catch (error: any) {
       if(error?.response?.status === 403){
@@ -152,8 +154,8 @@ const ConversationPage = () => {
           return (
             <Chat
               key={index}
-              query= {message.query}
-              content={message.content}
+              content={message.content!}
+              role={message.role}
             />
           )
         })}

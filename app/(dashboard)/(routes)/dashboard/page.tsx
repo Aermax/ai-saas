@@ -24,6 +24,13 @@ const items = [
       bg: "bg-violet-500/10"
   },
   {
+    title:"Code Generation",
+    href:"/code",
+    logo: Code,
+    color: "text-red-500",
+    bg: "bg-red-500/10"
+  },
+  {
       title:"Image Generation",
       href:"/image",
       logo: ImageIcon,
@@ -45,13 +52,7 @@ const items = [
       color: "text-blue-300",
       bg: "bg-blue-300/10"
   },
-  {
-      title:"Code Generation",
-      href:"/code",
-      logo: Code,
-      color: "text-red-500",
-      bg: "bg-red-500/10"
-  }
+  
 ]
 
 const DashBoardPage = () => {

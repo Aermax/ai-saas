@@ -33,6 +33,7 @@ import {
 } from '@/components/ui/select'
 import { Card, CardFooter } from '@/components/ui/card'
 import { useProModal } from '@/hooks/use-pro-modal'
+import { Badge } from '@/components/ui/badge'
 
 
 type Message = {
@@ -51,7 +52,7 @@ const ImagePage = () => {
     defaultValues: {
       prompt: "",
       amount: "1",
-      resolution: "512x512"
+      resolution: "256x256"
     }
   })
 
@@ -145,8 +146,10 @@ const ImagePage = () => {
                         <SelectItem 
                           key={option.value} 
                           value={option.value}
+                          disabled={option.value !== "1"}
                         >
                           {option.label}
+                          {option.value !== "1" && <Badge className='ml-4' variant="premium">Pro</Badge>}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -176,8 +179,11 @@ const ImagePage = () => {
                         <SelectItem 
                           key={option.value} 
                           value={option.value}
+                          disabled={option.value !== "256x256"}
+
                         >
                           {option.label}
+                          {option.value !== "256x256" && <Badge className='ml-8' variant="premium">Pro</Badge>}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -211,7 +217,7 @@ const ImagePage = () => {
       </div>
       <div>
       {
-        isLoading && <div className="mt-2 mx-0 md:mx-8 p-9 gap-2 flex items-center justify-center 
+        isLoading && <div className="mt-2 ml-4 md:mx-8 p-9 gap-2 flex items-center justify-center 
         pl-4  mr-4 rounded-md bg-muted
         ">
           <Loader className="animate-spin"/>
