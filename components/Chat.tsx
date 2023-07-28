@@ -18,7 +18,7 @@ const Chat = ({query, content} : ChatProps) => {
             <p >{content}</p>
         </div>
         
-        <div className='flex m-4 gap-4 pl-4 p-4 mr-4 items-center rounded-md bg-white border'>
+        <div className='flex m-4 gap-4 pl-4 p-4 mr-4 items-center rounded-md bg-white dark:bg-muted-foreground border'>
             <UserAvatar />
             <p >{query}</p>
         </div>
