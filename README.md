@@ -8,8 +8,6 @@
 
 The Ultimate AI tool that can consist of LLM to Image Generation
 
-https://github.com/Aermax/ai-saas/assets/95025070/1dab7a2c-bbdd-4350-90ba-e02f4182ba5b
-
 ## Authors
 
 - [@aermax](https://www.github.com/aermax)
