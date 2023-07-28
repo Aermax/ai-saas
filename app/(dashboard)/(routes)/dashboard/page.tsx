@@ -81,7 +81,8 @@ const DashBoardPage = () => {
                 
                 key="item.title"
                 className="cursor-pointer text-center md:w-1/2 w-full py-8 border-black/5 m-2 p-3 
-                rounded-md   hover:shadow-md"
+                rounded-md   hover:shadow-md dark:border-muted dark:px-4 bg-blend-hard-light"
+                
               >
                 <div 
                   onClick={()=>router.push(item.href)}

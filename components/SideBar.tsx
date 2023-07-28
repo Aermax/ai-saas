@@ -19,7 +19,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { FreeCounter } from './free-counter'
 import { getApiLimitCount } from '@/lib/api-limit'
 
-
+import { ModeToggle } from './theme-toggle'
 
 
 const montserrat = Montserrat({
@@ -67,7 +67,7 @@ const routes = [
     },
     {
         title:"Settings",
-        href:"/setting",
+        href:"/settings",
         logo: Settings,
         color: "text-white"
     }
@@ -93,6 +93,7 @@ export const Sidebar = ({isPro, apiLimitCount} : {isPro: boolean, apiLimitCount:
             </div>
             <h1 className={cn("text-xl ml-2")}>Creata.ai</h1>
         </div>
+        
         <div>
         {
             routes.map((route)=>{
