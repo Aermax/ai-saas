@@ -9,11 +9,16 @@ import {
     SheetTrigger 
 } from '@/components/ui/sheet'
 import {Sidebar} from '@/components/SideBar'
-import { getApiLimitCount } from '@/lib/api-limit'
 
 
 
-const MobileSideBar = ({apiLimitCount}: {apiLimitCount: number}) => {
+const MobileSideBar = (
+  {apiLimitCount,
+  isPro}: 
+  {
+    apiLimitCount: number,
+    isPro: boolean
+  }) => {
 
   const [isMounted, setIsMounted] = useState(false)
 
@@ -38,7 +43,7 @@ const MobileSideBar = ({apiLimitCount}: {apiLimitCount: number}) => {
             </Button>
           </SheetTrigger>
           <SheetContent className="p-0" side="left">
-              <Sidebar  isPro={false} apiLimitCount={apiLimitCount} />
+              <Sidebar  isPro={isPro} apiLimitCount={apiLimitCount} />
           </SheetContent>
           
         </Sheet>

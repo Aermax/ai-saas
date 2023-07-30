@@ -10,7 +10,7 @@ const Navbar = async () => {
   const isPro = await checkSubscription()
   return (
     <div className="flex m-4 gap-2 justify-between items-center">
-      <MobileSideBar apiLimitCount={apiLimitCount}/>
+      <MobileSideBar isPro={isPro} apiLimitCount={apiLimitCount}/>
       <div className="">
             <ModeToggle/>
       </div>
