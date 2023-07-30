@@ -17,7 +17,7 @@ import { Card } from '@/components/ui/card'
 const items = [
 
   {
-      title:"Conversation",
+      title:"AI Chat",
       href:"/conversation",
       logo: MessageSquare,
       color: "text-violet-500",

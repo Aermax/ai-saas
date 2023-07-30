@@ -41,11 +41,6 @@ export async function POST(
         const response = await openai.createChatCompletion({
             model: "gpt-3.5-turbo",
             messages: messages,
-            temperature: 1,
-            max_tokens: 150,
-            top_p: 1,
-            frequency_penalty: 0,
-            presence_penalty: 0,
           });
 
         //Llama LLM

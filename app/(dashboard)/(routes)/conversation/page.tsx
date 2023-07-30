@@ -10,6 +10,7 @@ import * as z from 'zod'
 import { formSchema } from './constants'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { ChatCompletionRequestMessage } from "openai"
+import { toast } from "react-hot-toast"
 
 import { 
   Form, 
@@ -50,6 +51,7 @@ const ConversationPage = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) =>{
     try {
 
+      
       const userMessage: ChatCompletionRequestMessage = { role: "user", content: values.prompt };
       const newMessages = [...messages, userMessage];
       
@@ -64,6 +66,8 @@ const ConversationPage = () => {
     } catch (error: any) {
       if(error?.response?.status === 403){
         proModal.onOpen()
+      }else{
+        toast.error("Something Went Wrong")
       }
     }finally{
       router.refresh()
@@ -76,7 +80,7 @@ const ConversationPage = () => {
   return (
     <div>
       <Header 
-        title="Conversation"
+        title="AI Chat"
         content="Our most Advanced Language Model"
         icon={MessageSquare}
         color="text-purple-500"
