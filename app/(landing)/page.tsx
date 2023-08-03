@@ -8,7 +8,7 @@ import { Montserrat } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
-const font = Montserrat({ weight: '600', subsets: ['latin'] });
+const font = Montserrat({ weight: "600", subsets: ["latin"] });
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -17,90 +17,94 @@ const testimonials = [
     name: "Joel",
     avatar: "J",
     title: "Software Engineer",
-    description: "This is the best application I've ever used!",
+    description: "This is the best application I've ever used!"
   },
   {
     name: "Antonio",
     avatar: "A",
     title: "Designer",
-    description: "I use this daily for generating new photos!",
+    description: "I use this daily for generating new photos!"
   },
   {
     name: "Mark",
     avatar: "M",
     title: "CEO",
-    description: "This app has changed my life, cannot imagine working without it!",
+    description:
+      "This app has changed my life, cannot imagine working without it!"
   },
   {
     name: "Mary",
     avatar: "M",
     title: "CFO",
-    description: "The best in class, definitely worth the premium subscription!",
-  },
+    description: "The best in class, definitely worth the premium subscription!"
+  }
 ];
 
-export default function LandingPage(){
+export default function LandingPage() {
   const { isSignedIn } = useAuth();
 
   return (
-    <div className="h-full bg-[#111827] overflow-hidden 
+    <div
+      className="h-full bg-[#111827] overflow-hidden 
     selection:text-purple-500 
-    selection:bg-white">
+    selection:bg-white"
+    >
       <nav className="p-4 bg-transparent flex items-center justify-between">
-      <Link href="/" className="flex items-center">
-        <div className="relative h-8 w-8 mr-4">
-          <Image fill alt="Logo" src="/logoipsum-280.svg" />
-        </div>
-        <h1 className={cn("text-2xl font-bold text-white", font.className)}>
-          Creata
-        </h1>
-      </Link>
-      <div className="flex items-center gap-x-2">
-        <Link href={isSignedIn ? "/dashboard" : "/sign-up"}>
-          <Button variant="outline" className="rounded-full">
-            Get Started
-          </Button>
+        <Link href="/" className="flex items-center">
+          <div className="relative h-8 w-8 mr-4">
+            <Image fill alt="Logo" src="/logoipsum-280.svg" />
+          </div>
+          <h1 className={cn("text-2xl font-bold text-white", font.className)}>
+            Creata
+          </h1>
         </Link>
-      </div>
-    </nav>
+        <div className="flex items-center gap-x-2">
+          <Link href={isSignedIn ? "/dashboard" : "/sign-up"}>
+            <Button variant="outline" className="rounded-full">
+              Get Started
+            </Button>
+          </Link>
+        </div>
+      </nav>
 
-
-    <div className="text-white font-bold py-36 text-center space-y-5">
-      <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl space-y-5 font-extrabold">
-        <h1>The Ultimate AI Tool</h1>
-        <div className=" select-none text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-600">
-          <TypewriterComponent
-            
-            options={{
-              strings: [
-                "Chatbot.",
-                "Photo Generation.",
-                "Code Assistant.",
-                "Music Generation.",
-                "Video and Animation."
-              ],
-              autoStart: true,
-              loop: true,
-            }}
-          />
+      <div className="text-white font-bold py-36 text-center space-y-5">
+        <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl space-y-5 font-extrabold">
+          <h1>The Ultimate AI Tool</h1>
+          <div className=" select-none text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-600">
+            <TypewriterComponent
+              options={{
+                strings: [
+                  "Chatbot.",
+                  "Photo Generation.",
+                  "Code Assistant.",
+                  "Music Generation.",
+                  "Video and Animation."
+                ],
+                autoStart: true,
+                loop: true
+              }}
+            />
+          </div>
+        </div>
+        <div className="text-sm mt-8 md:text-xl font-light text-zinc-400">
+          Explore The Power of AI
+        </div>
+        <div>
+          <Link href={isSignedIn ? "/dashboard" : "/sign-up"}>
+            <Button
+              variant="premium"
+              className="hover:shadow-amber-400 md:text-lg p-4 md:p-6 rounded-full font-semibold"
+            >
+              Start with a Free Trial
+            </Button>
+          </Link>
+        </div>
+        <div className="text-zinc-400 text-xs md:text-sm font-normal">
+          Sign In Today.
         </div>
       </div>
-      <div className="text-sm mt-8 md:text-xl font-light text-zinc-400">
-        Explore The Power of AI
-      </div>
-      <div>
-        <Link href={isSignedIn ? "/dashboard" : "/sign-up"}>
-          <Button variant="premium" className="hover:shadow-amber-400 md:text-lg p-4 md:p-6 rounded-full font-semibold">
-            Start with a Free Trial
-          </Button>
-        </Link>
-      </div>
-      <div className="text-zinc-400 text-xs md:text-sm font-normal">
-        Sign In Today.
-      </div>
-    </div>
 
-    {/* <div className="px-10 pb-20 h-full bg-[#111827]">
+      {/* <div className="px-10 pb-20 h-full bg-[#111827]">
       <h2 className="text-center text-4xl text-white font-extrabold mb-10">Testimonials</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {testimonials.map((item) => (
@@ -122,4 +126,4 @@ export default function LandingPage(){
     </div> */}
     </div>
   );
-};
+}
