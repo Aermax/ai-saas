@@ -72,7 +72,7 @@ const DashBoardPage = () => {
   return (
     <div>
       <div>
-        <div className="text-6xl px-6 font-bold text-center selection:bg-purple-300">
+        <div className="text-6xl px-6 font-bold text-center selection:bg-purple-300  selection:text-white">
           <h2>Explore AI easily</h2>
           <h2>
             With{" "}
