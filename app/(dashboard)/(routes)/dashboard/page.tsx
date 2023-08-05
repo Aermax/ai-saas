@@ -88,7 +88,7 @@ const DashBoardPage = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 overflow-x-hidden lg:grid-cols-3 md:gap-6 gap-2  px-6 selection:bg-white selection:text-purple-500">
+      <div className="grid grid-cols-1 overflow-x-hidden lg:grid-cols-3 md:gap-6 gap-2  px-3 pl-1 selection:bg-white selection:text-purple-500">
         {items.map((item) => {
           return (
             <Card
