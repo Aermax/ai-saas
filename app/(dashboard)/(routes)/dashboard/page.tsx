@@ -88,18 +88,18 @@ const DashBoardPage = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 overflow-x-hidden lg:grid-cols-3 md:gap-6 gap-2  px-3 pl-1 selection:bg-white selection:text-purple-500">
+      <div className="grid w-[98%] grid-cols-1 overflow-x-hidden lg:grid-cols-3 md:gap-6 gap-2  px-1 md:px-4 selection:bg-white selection:text-purple-500">
         {items.map((item) => {
           return (
             <Card
               onClick={() => router.push(item.href)}
               key="item.title"
-              className="relative cursor-pointer text-center md:w-[100%] w-[100%] py-8 border-black/5 m-2 pl-2 
+              className="relative cursor-pointer text-center md:w-[100%]  py-8 border-black/5 m-2 pl-2 
                 rounded-md   hover:shadow-md dark:border-muted  bg-blend-hard-light
-                bg-gray-100 dark:bg-gray-900 h-48 lg:h-48 
+                bg-gray-100 dark:bg-gray-900 h-48 lg:h-48 w-[98%]
                 "
             >
-              <CardHeader className="p-2 h-full">
+              <CardHeader className="p-2 ">
                 <div className="md:flex  gap-2 h-full">
                   <div className={cn("rounded-sm p-2 h-10 w-10", item.bg)}>
                     <item.logo className={cn("", item.color)} />
@@ -108,8 +108,10 @@ const DashBoardPage = () => {
                     {item.title}
                   </CardTitle>
                 </div>
-                <p className="my-6 text-left  text-gray-400">{item.content}</p>
               </CardHeader>
+              <CardFooter>
+                <p className="my-6 text-left  text-gray-400">{item.content}</p>
+              </CardFooter>
               <div
                 className={cn(
                   "absolute rounded-md bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-muted opacity-0 transition duration-300 ease-in-out hover:opacity-70",
