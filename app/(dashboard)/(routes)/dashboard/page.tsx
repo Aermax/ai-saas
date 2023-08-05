@@ -70,7 +70,7 @@ const DashBoardPage = () => {
   const router = useRouter();
 
   return (
-    <div>
+    <div className="overflow-x-hidden h-full">
       <div>
         <div className="text-6xl px-6 font-bold text-center selection:bg-purple-300  selection:text-white">
           <h2>Explore AI easily</h2>
@@ -88,7 +88,7 @@ const DashBoardPage = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-3 md:gap-6 gap-2  px-6 selection:bg-white selection:text-purple-500">
+      <div className="grid grid-cols-1 overflow-x-hidden lg:grid-cols-3 md:gap-6 gap-2  px-6 selection:bg-white selection:text-purple-500">
         {items.map((item) => {
           return (
             <Card
@@ -96,7 +96,7 @@ const DashBoardPage = () => {
               key="item.title"
               className="relative cursor-pointer text-center md:w-[100%] w-[100%] py-8 border-black/5 m-2 pl-2 
                 rounded-md   hover:shadow-md dark:border-muted  bg-blend-hard-light
-                bg-gray-100 dark:bg-gray-900 h-56 md:h-52 lg:md-48
+                bg-gray-100 dark:bg-gray-900 h-48 lg:h-48 
                 "
             >
               <CardHeader className="p-2 h-full">
@@ -108,9 +108,7 @@ const DashBoardPage = () => {
                     {item.title}
                   </CardTitle>
                 </div>
-                <CardContent className="my-6  text-gray-400">
-                  {item.content}
-                </CardContent>
+                <p className="my-6 text-left  text-gray-400">{item.content}</p>
               </CardHeader>
               <div
                 className={cn(
