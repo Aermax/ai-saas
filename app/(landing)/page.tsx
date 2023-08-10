@@ -19,7 +19,7 @@ export default function LandingPage() {
     <div
       className="h-full relative  overflow-hidden 
     selection:text-purple-500 
-    selection:bg-white bg-neutral-900 bg-gradient-to-br from-purple-900 via-black to-black pb-10 text-white "
+    selection:bg-white bg-neutral-900 bg-gradient-to-br from-purple-900 via-black to-black pb-10  "
     >
       <nav className="p-4 bg-transparent flex items-center justify-between">
         <Link href="/" className="flex items-center">
