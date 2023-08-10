@@ -12,42 +12,14 @@ const font = Montserrat({ weight: "600", subsets: ["latin"] });
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-const testimonials = [
-  {
-    name: "Joel",
-    avatar: "J",
-    title: "Software Engineer",
-    description: "This is the best application I've ever used!"
-  },
-  {
-    name: "Antonio",
-    avatar: "A",
-    title: "Designer",
-    description: "I use this daily for generating new photos!"
-  },
-  {
-    name: "Mark",
-    avatar: "M",
-    title: "CEO",
-    description:
-      "This app has changed my life, cannot imagine working without it!"
-  },
-  {
-    name: "Mary",
-    avatar: "M",
-    title: "CFO",
-    description: "The best in class, definitely worth the premium subscription!"
-  }
-];
-
 export default function LandingPage() {
   const { isSignedIn } = useAuth();
 
   return (
     <div
-      className="h-full bg-[#111827] overflow-hidden 
+      className="h-full relative  overflow-hidden 
     selection:text-purple-500 
-    selection:bg-white"
+    selection:bg-white bg-neutral-900 bg-gradient-to-br from-purple-900 via-black to-black pb-10 text-white "
     >
       <nav className="p-4 bg-transparent flex items-center justify-between">
         <Link href="/" className="flex items-center">
@@ -67,7 +39,7 @@ export default function LandingPage() {
         </div>
       </nav>
 
-      <div className="text-white font-bold py-36 text-center space-y-5">
+      <div className="z-10 text-white font-bold py-36 text-center space-y-5">
         <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl space-y-5 font-extrabold">
           <h1>The Ultimate AI Tool</h1>
           <div className=" select-none text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-600">
