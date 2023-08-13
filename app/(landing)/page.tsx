@@ -17,7 +17,7 @@ export default function LandingPage() {
     <div
       className="h-full relative  overflow-hidden 
     selection:text-purple-500
-    selection:bg-white bg-neutral-900 bg-gradient-to-br from-purple-900 via-black to-black pb-10  "
+    selection:bg-white bg-neutral-900  pb-10  bg-gradient-to-br from-purple-900 via-black to-purple-700"
     >
       <nav className="p-4 bg-transparent flex items-center justify-between">
         <Link href="/" className="flex items-center">
@@ -37,8 +37,8 @@ export default function LandingPage() {
         </div>
       </nav>
 
-      <div className="flex justify-between items-center relative ">
-        <div className="z-10 text-white font-bold py-36 sm:text-left text-center space-y-5 relative sm:left-28 left-0">
+      <div className="grid place-content-center md:flex md:justify-between sm:justify-center items-center relative ">
+        <div className=" z-10 text-white font-bold py-36 sm:text-left text-center space-y-5 md:relative  md:left-28">
           <div className="text-4xl sm:text-6xl md:text-6xl lg:text-7xl space-y-5 font-extrabold">
             <h1 className={cn("spacing",font.className)}>The Ultimate AI Tool</h1>
             <div className={cn(" select-none text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600",font.className)}>
@@ -72,7 +72,7 @@ export default function LandingPage() {
           </div>
         </div>
         <div className="">
-          <Image src='/art.jpg' draggable={"false"} alt="" width={500} height={1000} className="rounded-lg absolute  top-0  sm:right-24 right-0"></Image>
+          <Image src='/art.jpg' draggable={"false"} alt="" width={500} height={1000}  className="object-contain md:rounded-lg absolute top-0  md:right-24 right-0"></Image>
         </div>
       </div>
     </div>
