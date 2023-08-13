@@ -17,7 +17,7 @@ export default function LandingPage() {
     <div
       className="h-full relative  overflow-hidden 
     selection:text-purple-500
-    selection:bg-white bg-neutral-900  pb-10  bg-gradient-to-br from-purple-900 via-black to-purple-700"
+    selection:bg-white bg-neutral-900  pb-10  bg-gradient-to-br from-purple-900 via-black to-black"
     >
       <nav className="p-4 bg-transparent flex items-center justify-between">
         <Link href="/" className="flex items-center">
@@ -72,7 +72,7 @@ export default function LandingPage() {
           </div>
         </div>
         <div className="">
-          <Image src='/art.jpg' draggable={"false"} alt="" width={500} height={1000}  className="object-contain md:rounded-lg absolute top-0  md:right-24 right-0"></Image>
+          <Image src='/art.jpg' draggable={"false"} alt="" width={500} height={1000}  className="object-contain md:rounded-lg sm:absolute sm:inline-block hidden top-0  md:right-24 right-0"></Image>
         </div>
       </div>
     </div>
