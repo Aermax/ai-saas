@@ -76,7 +76,7 @@ const DashBoardPage = () => {
           <h2>Explore AI easily</h2>
           <h2>
             With{" "}
-            <span className="text-purple-400 selection:text-purple-700">
+            <span className="dark:text-purple-400 text-purple-600 selection:text-purple-700">
               Creata
             </span>
           </h2>
