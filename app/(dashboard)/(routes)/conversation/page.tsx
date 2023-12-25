@@ -1,74 +1,74 @@
-"use client";
+"use client"
 
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import Header from "@/components/Header";
-import { Loader, MessageSquare } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
-import { formSchema } from "./constants";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { ChatCompletionRequestMessage } from "openai";
-import { toast } from "react-hot-toast";
+import React, { useState, useEffect } from "react"
+import axios from "axios"
+import Header from "@/components/Header"
+import { Loader, MessageSquare } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { useForm } from "react-hook-form"
+import * as z from "zod"
+import { formSchema } from "./constants"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { ChatCompletionRequestMessage } from "openai"
+import { toast } from "react-hot-toast"
 
-import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { useRouter } from "next/navigation";
-import { cn } from "@/lib/utils";
-import Chat from "@/components/Chat";
-import Image from "next/image";
-import { useProModal } from "@/hooks/use-pro-modal";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { useRouter } from "next/navigation"
+import { cn } from "@/lib/utils"
+import Chat from "@/components/Chat"
+import Image from "next/image"
+import { useProModal } from "@/hooks/use-pro-modal"
 
 type Message = {
-  query: string;
-  content: string;
-};
+  query: string
+  content: string
+}
 
-const arrayToSentence = (arr: Array<string>): string => arr.join(" ");
+const arrayToSentence = (arr: Array<string>): string => arr.join(" ")
 
 const ConversationPage = () => {
-  const router = useRouter();
-  const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
-  const proModal = useProModal();
+  const router = useRouter()
+  const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([])
+  const proModal = useProModal()
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       prompt: ""
     }
-  });
+  })
 
-  const isLoading = form.formState.isSubmitting;
+  const isLoading = form.formState.isSubmitting
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       const userMessage: ChatCompletionRequestMessage = {
         role: "user",
         content: values.prompt
-      };
-      const newMessages = [...messages, userMessage];
+      }
+      const newMessages = [...messages, userMessage]
 
       const response = await axios.post("/api/conversation", {
         messages: newMessages
-      });
-      setMessages((current) => [response.data, userMessage, ...current]);
+      })
+      setMessages((current) => [response.data, userMessage, ...current])
 
       //const response = await axios.post('/api/conversation', { messages: values.prompt });
       //setMessages((current) => [...current, userMessage, response.data]);
       //console.log(response.data)
 
-      form.reset();
+      form.reset()
     } catch (error: any) {
       if (error?.response?.status === 403) {
-        proModal.onOpen();
+        proModal.onOpen()
       } else {
-        toast.error("Something Went Wrong");
+        toast.error("Something Went Wrong")
       }
     } finally {
-      router.refresh();
+      router.refresh()
     }
-  };
+  }
 
   return (
     <div>
@@ -151,11 +151,11 @@ const ConversationPage = () => {
         {messages?.map((message, index) => {
           return (
             <Chat key={index} content={message.content!} role={message.role} />
-          );
+          )
         })}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ConversationPage;
+export default ConversationPage
